@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1>Todo App</h1> 
+        </div>
+
+        <div class="col-12 text-center mt-3" >
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Todos</span>
+                    <input type="text"  name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <button type="submit" class="btn btn-success">Add</button>
+
+            </form>
+        </div>
+
+            <div class="col-12 text-center">
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">Your todos</li>
+                        {% for details in detail reversed %}
+                        <form action="delete/{{ details.id }}" method="post">
+                        {% csrf_token %}
+                          <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ details.name }}
+                                <span class="badge badge-primary "><button type="submit" class="btn btn-danger">delete</button></span>
+                            </li>
+                          </ul>
+                        </form>
+                    {% endfor %}
+                </ul>
+            </div>
+                
+          
+            
+           
+
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
