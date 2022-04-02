@@ -1,0 +1,1 @@
+web: gunicorn myap.wsgi:application --log-file -
